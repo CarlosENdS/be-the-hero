@@ -10,7 +10,7 @@ module.exports = {
         .first();
 
         if(!ong){
-            return responde.status(400).json({ error: 'No ONG founf with this ID'});
+            return response.status(400).json({ error: 'No ONG founf with this ID'});
         }
 
         return response.json(ong);
