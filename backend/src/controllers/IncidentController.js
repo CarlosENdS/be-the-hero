@@ -48,5 +48,28 @@ module.exports = {
 
         return response.status(204).send();
     },
+
+    async update(request, response){
+        const { title, description, value} = request.body;
+        const {id} = request.params;
+        const ong_id = request.headers.authorization;
+
+        const incident = await connection('incidents')
+        .where('id',id)
+        .select('ong_id')
+        .first();
+
+        if(incident.ong_id !== ong_id){
+            return response.status(401).json({error: 'Operantion not permitted'});
+        }
+
+        await connection('incidents').where('id', id).update({
+            title,
+            description,
+            value
+        });
+
+        return response.status(204).send();
+    }
 };
  
