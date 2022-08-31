@@ -71,6 +71,13 @@ export default function Profile(){
                         <strong>VALOR:</strong>
                         <p>{Intl.NumberFormat('pt-BR',{style:'currency', currency:'BRL'}).format(incident.value)}</p>
 
+                        <Link className="button" onClick={() => (
+                            [localStorage.setItem('incidentId', incident.id),
+                            localStorage.setItem('incidentTitle', incident.title),
+                            localStorage.setItem('incidentDescription', incident.description),
+                            localStorage.setItem('incidentValue', incident.value)]
+                            )} to="/incidents/edit" >Atualizar caso</Link>
+
                         <button onClick={() => handleDeleteIncident(incident.id)} type="button">
                             <FiTrash2 size={20} color="#a8a8b3"/>
                         </button>
